@@ -1,3 +1,13 @@
+/*
+ * Given an array of intervals as input where each interval has a start and end timestamps.
+ * Input array is sorted by starting timestamps.
+ * Merge overlapping intervals and return output array (list).
+ * Eg:
+ * Input: Intervals [(1, 5), (3, 7), (4, 6), (6, 8)]
+ * Output: [(1, 8)]
+ *
+ * */
+     
 var inArr =  [[1, 5], [3, 7], [4, 6], [6, 8]], outArr = []
 console.log(inArr, inArr.length)
 
