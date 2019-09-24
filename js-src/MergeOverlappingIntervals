@@ -1,0 +1,18 @@
+var inArr =  [[1, 5], [3, 7], [4, 6], [6, 8]], outArr = []
+console.log(inArr, inArr.length)
+
+var idx=0, start = inArr[idx][0], end = inArr[idx][1]
+for (idx = 1; idx<inArr.length; idx++){
+    if (end >= inArr[idx][0] ){
+        end = inArr[idx][1]> end ? inArr[idx][1] : end
+        if (idx == inArr.length-1){
+            outArr.push([start, end])
+        }
+    }else{
+        console.log([start, end])
+        outArr.push([start, end])
+        start = inArr[idx][0]
+        end = inArr[idx][1]
+    }
+}
+console.log(outArr)
