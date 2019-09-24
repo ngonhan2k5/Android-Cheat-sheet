@@ -1,5 +1,5 @@
-# Android-Cheat-sheet
-Cheat Sheet for Android Interviews
+# Cheat-sheet
+Cheat Sheet for Interviews
 
 ## Topics
 * [Common Coding Programs](#common-coding-programs)
