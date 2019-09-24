@@ -1,0 +1,80 @@
+/*
+ * Given an array representing prices of the stock on different days,
+ * find the maximum profit that can be earned by performing maximum of one transaction.
+ * A transaction consists of activity of buying and selling the stock on different or same days.
+ *
+ * Eg: 1 - {100, 80, 120, 130, 70, 60, 100, 125}
+ * the price of the stock on day-1 is 100, on day-2 is 80 and so on.
+ * The maximum profit that could be earned in this window is 65 (buy at 60 and sell at 125).
+ *
+ * Eg: 2 - For price array - {100, 80, 70, 65, 60, 55, 50}, maximum profit that could be earned is 0.
+ *
+ * */
+ 
+/* https://leetcode.com/playground/z3Kgo8K6 */
+(function main() {
+    //var arr = [100, 80, 120, 130, 70, 60, 100, 125]
+    //var arr = [100, 80, 120, 70, 140, 60, 100, 125]
+    var arr = [100, 80, 70, 65, 60, 55, 50]
+    // Sol 1: n2/2 -> n2
+    console.time('s1')
+    let maxprofit = 0;
+    for (var i=0; i< arr.length-1; i++){
+        for (var j= i+ 1; j < arr.length; j ++){
+            let profit = arr[j] - arr[i]
+            if (profit > maxprofit)
+                maxprofit = profit
+        }
+    }
+    
+    console.log('Max profit:', maxprofit);
+    console.timeEnd('s1')
+    
+    console.time('s2')
+    //Sol 2: sort by price
+    var revArr =arr.map (function (v,k) {
+        return {k:k, v:v}
+    })
+    
+    console.log(revArr)
+    revArr.sort(function (a, b){
+        return a.v - b.v
+    })
+    
+    console.log('afterSort:', revArr, revArr.length)
+    
+    var left = 0, right = revArr.length-1
+    
+    while (revArr[left].k > revArr[right].k){
+        right--
+    }
+    console.log('From right:', left, right, max1 = revArr[right].v - revArr[left].v)
+    
+    var left = 0, right = revArr.length-1
+    
+    while (revArr[left].k > revArr[right].k){
+        left++
+    }
+    console.log('From left:', left, right, max2 = revArr[right].v - revArr[left].v)
+    console.log('Max profit 2:', Math.max(max1, max2))
+    console.timeEnd('s2')
+    
+    console.time('s3')
+    var minimumPrice = Number.MAX_VALUE;
+        var maxProfit = 0;
+
+        /*
+         * The profit is the maximum value of the maximumProfit so far and
+         * the difference between the current element(selling price) and the minimum buying price - i.e. profit for that buy
+         * Profit = current selling price - the minimum buying price
+         *
+         * Minimum buying price is the minimum value between the current element and the minimum price
+         * */
+        for(var i=0; i<arr.length; i++) {
+            maxProfit = Math.max(maxProfit, arr[i]-minimumPrice);
+            minimumPrice = Math.min(minimumPrice, arr[i]);
+        }
+    
+    console.log('Max profit 3:', maxProfit)
+    console.timeEnd('s3')
+}());
